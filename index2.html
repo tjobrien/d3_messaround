@@ -28,7 +28,9 @@
 } */
 .label {
   font-size: 13px;
-        }
+  color:black;
+
+  }
 </style>
 <svg class="chart"></svg>
 <!-- <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
@@ -103,37 +105,18 @@ var chart = d3.select(".chart")
       .attr("y", function(d) { return y(d.value); })
       .attr("height", function(d) { return height - y(d.value); })
       .attr("width", x.rangeBand());
-     
 
-  // bar.append("rect")
-  //     .attr("y", function(d) { return y(d.value); })
-  //     .attr("height", function(d) { return height - y(d.value); })
-  //     .attr("width", x.rangeBand());
+  //from https://stackoverflow.com/questions/42491106/add-labels-to-bar-chart-d3
+  chart.selectAll(".text")        
+    .data(data)
+    .enter()
+    .append("text")
+    .attr("class","label")
+    .attr("x", (function(d) { return x(d.name); }  ))
+    .attr("y", function(d) { return y(d.value) - 20; })
+    .attr("dy", ".75em")
+    .text(function(d) { return d.value; });       
 
-  bar.append("text")
-      .attr("class", "label")
-      .attr("x", x.rangeBand() / 2)
-      .attr("y", function(d) { return y(d.value) + 3; })
-      .attr("dy", ".75em")
-      .text(function(d) { return d.value; });
-
-  // chart.selectAll(".bar")
-  //     .data(data)
-  //   .enter().append("rect")
-  //     .attr("class", "bar")
-  //     .attr("x", function(d) { return x(d.name); })
-  //     .attr("y", function(d) { return y(d.value); })
-  //     .attr("height", function(d) { return height - y(d.value); })
-  //     .attr("width", x.rangeBand());
-
-
-  // var bar = chart.selectAll("g")
-
-  // bar.append("text")
-  //     .attr("x", x.rangeBand() / 2)
-  //     .attr("y", function(d) { return y(d.value) + 3; })
-  //     .attr("dy", ".75em")
-  //     .text(function(d) { return d.value; });
 
 
 
