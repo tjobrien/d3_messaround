@@ -65,12 +65,12 @@
                 "value": 30,
         }];
         //https://bl.ocks.org/hrecht/f84012ee860cb4da66331f18d588eee3
-        
+
         //sort bars based on value
         data = data.sort(function (a, b) {
             return d3.ascending(a.value, b.value);
         })
-
+        
         //set up svg using margin conventions - we'll need plenty of room on the left for labels
         var margin = {
             top: 15,
